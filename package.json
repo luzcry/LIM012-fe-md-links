@@ -1,0 +1,35 @@
+{
+  "name": "md-links",
+  "version": "1.0.0",
+  "description": "herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.",
+  "main": "API.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luzcry/LIM012-fe-md-links.git"
+  },
+  "keywords": [
+    "markdown",
+    "links",
+    "proyecto",
+    "node",
+    "js"
+  ],
+  "author": "maria rodriguez",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "10.1.0",
+    "babel-preset-stage-2": "6.24.1",
+    "jest": "25.2.7"
+  },
+  "dependencies": {
+    "axios": "0.19.2",
+    "markdown-link-extractor": "^1.2.3"
+  },
+  "bugs": {
+    "url": "https://github.com/luzcry/LIM012-fe-md-links/issues"
+  },
+  "homepage": "https://github.com/luzcry/LIM012-fe-md-links#readme"
+}

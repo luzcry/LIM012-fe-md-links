@@ -1,9 +1,9 @@
 Pseudo código
-![Pseudo-código](pseudo.png)
+![Pseudo-código](assets/pseudo.png)
 
-![flow-cli](CLIflow.png)
+![flow-cli](assets/CLIflow.png)
 
-![flow-api](flowapi.png)
+![flow-api](assets/flowapi.png)
 
 # Markdown Links
 

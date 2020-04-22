@@ -1,3 +1,7 @@
+const marked = require("marked");
+const fs = require("fs");
+
+const markdownLinkExtractor = require("markdown-link-extractor");
 /*const mdLinks = require("md-links");
 
 mdLinks("./some/example.md")
@@ -21,13 +25,18 @@ mdLinks("./some/dir")
     .catch(console.error);
 */
 
-const fs = require("fs");
 
-const markdownLinkExtractor = require("markdown-link-extractor");
 
-const marked = require("marked");
 
-let markdown = fs.readFileSync("./node.md", function (err, data) {
+let markdown = fs.readFileSync('./node.md').toString();
+
+let links = markdownLinkExtractor(markdown);
+
+links.forEach(function (link) {
+    console.log(link);
+});
+
+/*let markdown = fs.readFileSync("./node.md", function (err, data) {
     if (err) {
         console.log(err);
     }
@@ -38,4 +47,4 @@ let links = markdownLinkExtractor(markdown);
 
 links.forEach(function (link) {
     console.log(link);
-});
+});*/

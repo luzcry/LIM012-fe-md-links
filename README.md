@@ -1,4 +1,3 @@
-Pseudo código
 ![Pseudo-código](assets/pseudo.png)
 
 ![flow-cli](assets/CLIflow.png)

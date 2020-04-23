@@ -1,50 +1,20 @@
 const marked = require("marked");
 const fs = require("fs");
 
-const markdownLinkExtractor = require("markdown-link-extractor");
-/*const mdLinks = require("md-links");
+function mdLinkExtractor(markdown) {
+  var links = [];
 
-mdLinks("./some/example.md")
-    .then(links => {
-        // => [{ href, text, file }]
-    })
-    .catch(console.error);
+  var renderer = new marked.Renderer();
 
-mdLinks("./some/example.md", {
-        validate: true
-    })
-    .then(links => {
-        // => [{ href, text, file, status, ok }]
-    })
-    .catch(console.error);
+  renderer.link = function (href, title, text) {
+    links.push({ href, text });
+  };
 
-mdLinks("./some/dir")
-    .then(links => {
-        // => [{ href, text, file }]
-    })
-    .catch(console.error);
-*/
+  marked(markdown, { renderer: renderer });
 
+  return links;
+}
 
-
-
-let markdown = fs.readFileSync('./node.md').toString();
-
-let links = markdownLinkExtractor(markdown);
-
-links.forEach(function (link) {
-    console.log(link);
-});
-
-/*let markdown = fs.readFileSync("./node.md", function (err, data) {
-    if (err) {
-        console.log(err);
-    }
-    console.log(data.toString());
-});
-
-let links = markdownLinkExtractor(markdown);
-
-links.forEach(function (link) {
-    console.log(link);
-});*/
+let markdown = fs.readFileSync("./node.md").toString();
+let result = mdLinkExtractor(markdown);
+console.log(result);

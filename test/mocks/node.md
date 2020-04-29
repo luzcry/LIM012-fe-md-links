@@ -6,6 +6,8 @@
 
 [proyecto md links](https://github.com/luzcry/LIM012-fe-md-links)
 
+[este link no sirve](https://estapaginanoexiste.com)
+
 [librería de node que extrae links](https://www.npmjs.com/package/markdown-link-extractor)
 
 [testing en javascript](http://tecnops.es/testing-en-javascript-con-jest-parte-1-de-2/)

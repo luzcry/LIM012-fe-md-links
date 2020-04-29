@@ -4,7 +4,7 @@
   "description": "herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.",
   "main": "API.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node mdlinks.spec.js"
   },
   "repository": {
     "type": "git",
@@ -23,11 +23,12 @@
     "babel-eslint": "^8.2.6",
     "babel-preset-stage-2": "6.24.1",
     "eslint": "^4.19.1",
-    "jest": "25.2.7"
+    "jest": "^25.2.7"
   },
   "dependencies": {
     "axios": "0.19.2",
-    "marked": "^1.0.0"
+    "marked": "^1.0.0",
+    "node-fetch": "^2.6.0"
   },
   "bugs": {
     "url": "https://github.com/luzcry/LIM012-fe-md-links/issues"

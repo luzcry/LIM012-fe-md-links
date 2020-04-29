@@ -4,55 +4,107 @@ const Path = require("path");
 const {
   lstatSync,
   readdirSync
-} = require('fs')
+} = require("fs");
 const {
   join
-} = require('path')
-/*var validUrl = require("valid-url");*/
+} = require("path");
+const fetch = require("node-fetch");
 
 function mdLinkExtractor(markdown) {
-  var links = [];
+  let links = [];
 
-  var renderer = new marked.Renderer();
+  let renderer = new marked.Renderer();
 
   renderer.link = function (href, title, text) {
     links.push({
       href,
-      text
+      text,
     });
   };
 
   marked(markdown, {
-    renderer: renderer
+    renderer: renderer,
   });
 
   return links;
 }
 
-let markdown = fs.readFileSync("./node.md").toString();
-let result = mdLinkExtractor(markdown);
-console.log(result);
 
-let path = "./node.md";
+let markdown = fs.readFileSync("./test/mocks/node.md").toString();
+let result = mdLinkExtractor(markdown);
+
+let path = "./test/mocks/node.md";
 
 fs.lstat(path, (err, stats) => {
-
-  if (err)
-    return console.log(err); //Handle error
-
+  if (err) return console.log(err);
   console.log(`Is file: ${stats.isFile()}`);
   console.log(`Is directory: ${stats.isDirectory()}`);
 });
 
+const getResultInArray = (dir) => {
+  let arrayOfMds = fs.readdirSync(dir).filter(file => {
+    console.log(file);
+    const path = Path.join(dir, file);
+    if (fs.lstatSync(path).isDirectory()) {
+      traverseSync(path);
+    }
+    return path
+  })
+  return arrayOfMds;
+}
+
+function getMD(path) {
+  return console.log(path)
+}
 
 
-const traverseSync = dir => ({
+const traverseSync = (dir, getMD) => ({
   path: dir,
   children: fs.readdirSync(dir).map(file => {
     const path = Path.join(dir, file);
-    return fs.lstatSync(path).isDirectory() ?
-      traverseSync(path) : Path.extname(path) === ".md" ? mdLinkExtractor(fs.readFileSync(path).toString()) : path;
+    const isMd = Path.extname(file) === ".md";
+    const isDirectory = fs.lstatSync(path).isDirectory();
+    if (isDirectory) {
+      traverseSync(path);
+    } else if (isMd) {
+      console.log("getMD", getMD, path)
+      return {
+        path
+      }
+    } else {
+      return {
+        path
+      }
+    }
+
   })
 });
 
-console.log(traverseSync("./"));
+
+console.log(traverseSync("./test/mocks", getMD));
+
+files = fs.readdirSync(__dirname);
+
+console.log("\Filenames with the .md extension:");
+files.forEach(file => {
+  if (Path.extname(file) == ".md")
+    console.log(file);
+})
+
+
+
+const filterMds = (paths) => {
+
+}
+
+const fetchPromises = (result) => result.map((result) => fetch(result));
+let allFetchs = (promises) => Promise.all(promises);
+allFetchs(fetchPromises(result)).then((fetchsResult) => {
+  return fetchsResult.map((result) => {
+    href: result.url;
+    status: result.status;
+    text: result.statusText;
+  });
+}).catch((error) => console.error(error));
+
+console.error("fail");

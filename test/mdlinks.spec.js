@@ -6,8 +6,22 @@ describe('mdLinkExtractor', () => {
     it("debería ser una función"), () => {
         expect(typeof mdLinkExtractor).toBe('function');
     };
-    it("debería devolver un arreglo"), () => {
-        expect([...mdLinkExtractor(markdown)]).toStrictEqual(links);
+    it("debería devolver un arreglo de objetos"), () => {
+        expect.assertions(1);
+        return mdlinks("other/node.md", {validat: true}).then((Response) => {
+            expect(Response).toEqual(
+                [
+                    {
+                        file: "other/node.md",
+                        href: "https://es.wikipedia.org/wiki/Markdown",
+                        text: "wiki markdown",
+                        status: 200, 
+                        statusText: "ok"
+
+                    }
+                ]
+            )
+        })
     };
 });
 test('el fetch falla si el url no conduce a una HTTP válida', () => {
@@ -18,4 +32,6 @@ describe('verificar la ruta absoluta/relativa', () => {
 
 })
 
-TextDecoderStream('debe verificar si el ejecutable devuelve un array de objetos')
+Test('debe verificar si el ejecutable devuelve un array de objetos')
+
+test('debe verificar si el  archivo es un md')

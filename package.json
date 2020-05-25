@@ -2,9 +2,8 @@
   "name": "luzcry-mdlinks",
   "version": "1.0.0",
   "description": "herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.",
-  "main": "src/index.js",
   "bin": {
-    "md-links": "bin/LIM012-fe-md-links"
+    "mdLinks": "bin/LIM012-fe-md-links"
   },
   "publishConfig": {
     "access": "public"
@@ -26,16 +25,19 @@
   "author": "María Rodríguez",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-env": "^7.9.6",
     "babel-eslint": "^8.2.6",
     "babel-preset-stage-2": "6.24.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
-    "jest": "^25.2.7"
+    "jest": "^25.2.7",
+    "mock-fs": "^4.12.0"
   },
   "dependencies": {
     "arg": "^4.1.3",
     "axios": "0.19.2",
+    "babel-core": "^6.26.3",
     "colors": "^1.4.0",
     "esm": "^3.2.25",
     "inquirer": "^7.1.0",

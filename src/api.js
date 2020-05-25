@@ -20,7 +20,6 @@ const mdLinks = (route, option) => {
     } else if (directory(route)) {
       resolve(mdDirectoryExtractor(route, option));
     } else {
-      console.log(3);
       reject(new Error('No es una ruta o un archivo válido'));
     }
   });
@@ -28,5 +27,5 @@ const mdLinks = (route, option) => {
 };
 
 module.exports = {
-  mdLinks
-}
+  mdLinks,
+};

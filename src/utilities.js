@@ -1,24 +1,20 @@
-const marked = require("marked");
-const fs = require("fs");
-const path = require("path");
-const {
-  lstatSync,
-  readdirSync
-} = require("fs");
-const axios = require("axios");
+const marked = require('marked');
+const fs = require('fs');
+const path = require('path');
+
+const axios = require('axios');
 
 const mdDirectoryExtractor = (dir, options) => {
   let walk = function (dir) {
     let results = [];
     let list = fs.readdirSync(dir);
     list.forEach(function (file) {
-      file = dir + "/" + file;
+      file = dir + '/' + file;
       let stat = fs.statSync(file);
       if (stat && stat.isDirectory()) {
-
         results = results.concat(walk(file));
       } else {
-        if (path.extname(file) === ".md") {
+        if (path.extname(file) === '.md') {
           results.push(file);
         }
       }
@@ -39,28 +35,29 @@ const mdDirectoryExtractor = (dir, options) => {
 const mdLinksValidate = (links) => {
   const fetchPromises = (links) =>
     links.map((link) =>
-        axios.get(link.href)
+      axios
+        .get(link.href)
         .then((result) => {
-        return {
-          ...result,
-          ...link,
-        };
-      })
-      .catch((error) => {
-        if (error.response) {
           return {
-            status: error.response.status,
-            statusText: "fail",
+            ...result,
             ...link,
           };
-        } else {
-          return {
-            status: "404",
-            statusText: "fail",
-            ...link,
-          };
-        }
-      })
+        })
+        .catch((error) => {
+          if (error.response) {
+            return {
+              status: error.response.status,
+              statusText: 'fail',
+              ...link,
+            };
+          } else {
+            return {
+              status: '404',
+              statusText: 'fail',
+              ...link,
+            };
+          }
+        })
     );
   let allFetchs = (promises) => Promise.all(promises);
   return allFetchs(fetchPromises(links)).then((fetchsResult) => {
@@ -103,7 +100,7 @@ const file = (route) => fs.lstatSync(route).isFile();
 
 const getMD = (route) => {
   const pathMd = path.extname(route);
-  return pathMd === ".md";
+  return pathMd === '.md';
 };
 
 module.exports = {

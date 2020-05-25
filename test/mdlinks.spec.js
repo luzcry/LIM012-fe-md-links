@@ -1,9 +1,11 @@
 import mock from 'mock-fs';
+
 import {
   NODE_MD_RESULT,
   NO_VALIDATE_RESULT,
   DIRECTORY_RESULT_NO_VALIDATE,
 } from './mocks/mdResults';
+
 import { mdLinks } from '../src/api';
 
 const expect = global.expect;

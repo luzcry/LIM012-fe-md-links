@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.",
   "bin": {
-    "mdLinks": "bin/LIM012-fe-md-links"
+    "md-links": "bin/LIM012-fe-md-links"
   },
   "publishConfig": {
     "access": "public"

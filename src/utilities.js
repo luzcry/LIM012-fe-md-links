@@ -38,7 +38,6 @@ const mdLinksValidate = (links) => {
       axios
         .get(link.href)
         .then((result) => {
-          console.log(result);
           return {
             ...result,
             ...link,

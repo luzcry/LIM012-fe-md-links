@@ -5,6 +5,7 @@
   "bin": {
     "md-links": "bin/LIM012-fe-md-links"
   },
+  "main": "src/api.js",
   "publishConfig": {
     "access": "public"
   },

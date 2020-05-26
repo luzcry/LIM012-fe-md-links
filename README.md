@@ -2,18 +2,19 @@
 
 ![flow-api](assets/flowapi.png)
 
-Instalacion
+##### `Instalacion`
 
 npm install luzcry/LIM012-fe-md-links
 
-Guia de uso
+##### `Guia de uso`
 
 Requerir el modulo
 
 const mdLinks = require('luzcry-mdlinks');
 
 Pasar la ruta con las opciones en la linea de comandos
-md-links <path-to-file> [options]
+
+##### `md-links <path-to-file> [options]`
 
 Opciones disponibles
 

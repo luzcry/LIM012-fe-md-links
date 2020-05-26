@@ -26,6 +26,4 @@ const mdLinks = (route, option) => {
   return promise1;
 };
 
-module.exports = {
-  mdLinks,
-};
+module.exports = mdLinks;

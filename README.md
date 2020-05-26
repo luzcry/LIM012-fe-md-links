@@ -1,8 +1,34 @@
-![Pseudo-código](assets/pseudo.png)
-
-![flow-cli](assets/CLIflow.png)
+![Ejemplo del API](assets/codesample.png)
 
 ![flow-api](assets/flowapi.png)
+
+Instalacion
+
+npm install luzcry/LIM012-fe-md-links
+
+Guia de uso
+
+Requerir el modulo
+
+const mdLinks = require('luzcry-mdlinks');
+
+Pasar la ruta con las opciones en la linea de comandos
+md-links <path-to-file> [options]
+
+Opciones disponibles
+
+##### `--validate`
+
+Valida si el link funciona mediante una peticion HTTP.
+
+##### `--stats`
+
+Devuelve un texto con estadísticas básicas sobre los links.
+
+##### `--stats` y `--validate`
+
+Usa ambas opciones juntas para obtener estadísticas que
+necesiten de los resultados de la validación.
 
 # Markdown Links
 
@@ -153,21 +179,21 @@ las siguientes propiedades:
 #### Ejemplo
 
 ```js
-const mdLinks = require("md-links");
+const mdLinks = require('md-links');
 
-mdLinks("./some/example.md")
+mdLinks('./some/example.md')
   .then((links) => {
     // => [{ href, text, file }]
   })
   .catch(console.error);
 
-mdLinks("./some/example.md", { validate: true })
+mdLinks('./some/example.md', { validate: true })
   .then((links) => {
     // => [{ href, text, file, status, ok }]
   })
   .catch(console.error);
 
-mdLinks("./some/dir")
+mdLinks('./some/dir')
   .then((links) => {
     // => [{ href, text, file }]
   })

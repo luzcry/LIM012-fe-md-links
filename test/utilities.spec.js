@@ -1,4 +1,5 @@
 import mock from 'mock-fs';
+import moxios from 'moxios';
 import {
   directory,
   markdown,
@@ -12,6 +13,7 @@ import {
 import {
   MD_EXTRACTOR_RESULT,
   MD_EXTRACTOR_VALIDATED,
+  DIRECTORY_RESULT_NO_VALIDATE,
 } from './mocks/utilitiesResults';
 
 beforeEach(function () {
@@ -69,5 +71,37 @@ describe('Test mdDirectoryExtractor', () => {
         expect(Response).toStrictEqual(MD_EXTRACTOR_VALIDATED);
       }
     );
+  });
+});
+
+describe('mdLinksValidate', () => {
+  beforeEach(() => moxios.install());
+  afterEach(() => moxios.uninstall());
+
+  it('debería devolver el arreglo con los links validados', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: {
+          statusText: 'Ok',
+          status: 200,
+        },
+      });
+    });
+    const array = [
+      {
+        href: 'https://www.npmjs.com/package/valid-url',
+        path: './mocks//node.md',
+        text: 'Documentación node sobre validar urls',
+      },
+      {
+        href: 'https://www.npmjs.com/package/valid-url',
+        path: './mocks//novalidate.md',
+        text: 'Documentación node sobre validar urls',
+      },
+    ];
+    const result = mdLinksValidate(array);
+    expect(result).resolves.toEqual([]);
   });
 });

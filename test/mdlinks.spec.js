@@ -6,7 +6,7 @@ import {
   DIRECTORY_RESULT_NO_VALIDATE,
 } from './mocks/mdResults';
 
-import { mdLinks } from '../src/api';
+import mdLinks from '../src/api';
 
 const expect = global.expect;
 
